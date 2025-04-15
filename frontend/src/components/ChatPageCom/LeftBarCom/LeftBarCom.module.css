@@ -1,0 +1,51 @@
+.top-section {
+    /* background-color: blue; */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}
+.friend-list {
+    /* background-color: rebeccapurple; */
+    padding: 5px 5px;
+    flex: 1;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 8px;
+    /* hide scrollbar for Internet Explorer, Edge */
+    -ms-overflow-style: none;
+    /* for firefox */
+    scrollbar-width: none;
+}
+/* hide scrollbar for Chrome, Safari, and Opera */
+/* .friends-list::-webkit-scrollbar {
+    display: none;
+} */
+.friend-item {
+    background-color: black;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.friend-item:hover,
+.friend-item.active{
+    opacity: 0.4;
+    border: 1px solid #fff;
+}
+.friend-item .avatar {
+    background-color: aliceblue;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

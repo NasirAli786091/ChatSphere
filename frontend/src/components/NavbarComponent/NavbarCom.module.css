@@ -1,0 +1,110 @@
+.navbar-container{
+    flex: 1;
+    height: 60px;
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.navbar-container .title-box span{
+    /* background-color: aqua; */
+    color: red;
+}
+.navbar-container .nav-items{
+    /* background-color: red; */
+    height: 100%;
+    /* flex: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-items ul{
+    /* background-color: aliceblue; */
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.nav-items ul li{
+    width: 7rem;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* cursor: pointer; */
+}
+.link-btn{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    cursor: pointer;
+}
+.icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    transition: 0.5s ease-in-out;
+}
+.text{
+    position: absolute;
+    bottom: -30px;
+    transition: 0.5s ease-in-out;
+    pointer-events: none;
+    opacity: 0;
+}
+.link-btn:hover .text,
+.link-btn:focus .text{
+    transform: translateY(-30px);
+    opacity: 1;
+}
+.link-btn:hover .icon,
+.link-btn:focus .icon{
+    transform: translateY(-20px);
+}
+
+/* reponsive design */
+.menu-btn{
+    margin-left: auto;
+    display: none;
+    cursor: pointer;
+}
+@media (max-width: 800px){
+    .menu-btn{
+        display: block;
+        align-self: end;
+        justify-self: end;
+    }
+    .nav-items ul{
+        display: none;
+        height: auto;
+        border: 1px solid white;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+    }
+    .nav-items.open ul{
+        background-color: black;
+        display: flex;
+        justify-content: start;
+        border-radius: 10px;
+    }
+    .nav-items.open ul li{
+        height: 10%;
+        padding: 20px 0;
+        align-items: start;
+    }
+}

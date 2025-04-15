@@ -1,0 +1,81 @@
+.top-section {
+    background-color: red;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.top-section .avatar {
+    background-color: aliceblue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.mid-section {
+    flex: 1;
+    padding: 10px 3px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background-image: url("/Images/chatPg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.blank-space{
+    flex: 1;
+    padding: 10px 3px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background-image: url("/Images/chatPg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.message {
+    padding: 8px 12px;
+    border-radius: 16px;
+    max-width: 70%;
+    pointer-events: none;
+}
+.me {
+    align-self: flex-end;
+    background-color: #daf1da;
+}
+.friend {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+}
+.bottom-section{
+    background-color: antiquewhite;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    gap: 2px;
+}
+.bottom-section input{
+  flex: 1;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.bottom-section button{
+  padding: 8px 16px;
+  border: none;
+  background-color: #1976d2;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}

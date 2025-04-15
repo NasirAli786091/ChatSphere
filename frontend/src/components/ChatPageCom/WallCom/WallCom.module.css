@@ -1,0 +1,16 @@
+.wall {
+    width: 5px;
+    /* min-width: 150px;
+    max-width: 400px; */
+    position: relative;
+    cursor: e-resize;
+    background-color: #ccc;
+}
+
+.resizer {
+    /* background-color: #ccc; */
+    width: 5px;
+    width: 5px;
+    cursor: ew-resize;
+
+}
