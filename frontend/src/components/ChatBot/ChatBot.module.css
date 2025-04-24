@@ -1,0 +1,40 @@
+.link-btn{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    cursor: pointer;
+}
+.icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    transition: 0.5s ease-in-out;
+}
+.text{
+    position: absolute;
+    bottom: -30px;
+    transition: 0.5s ease-in-out;
+    pointer-events: none;
+    opacity: 0;
+}
+.link-btn:hover .text,
+.link-btn:focus .text{
+    transform: translateY(-30px);
+    opacity: 1;
+}
+.link-btn:hover .icon,
+.link-btn:focus .icon{
+    transform: translateY(-20px);
+}

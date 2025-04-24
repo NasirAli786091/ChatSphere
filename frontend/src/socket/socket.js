@@ -3,7 +3,7 @@ import useAuthStore from "../store/useAuthStore";
 
 const socket = io(import.meta.env.VITE_BACKEND_BASE_URL, {
     withCredentials: true,
-    autoConnect: false,
+    autoConnect: true,
 });
 
 

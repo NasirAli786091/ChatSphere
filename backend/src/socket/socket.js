@@ -1,5 +1,6 @@
 import Message from "../models/Messages.js"
 import { Server } from "socket.io"
+import getBotReply from "../utils/getBotReply.js";
 
 const initializeSocket = (server) => {
     const io = new Server(server, {
@@ -10,21 +11,30 @@ const initializeSocket = (server) => {
     });
 
     io.on("connection", (socket) => {
-        console.log("User connected", socket.id);
+        // console.log("User connected", socket.id);
 
         socket.on("join", (userId) => {
             socket.join(userId);
-            console.log(`user with id ${userId} joined room`);
         });
 
         //handle incoming messages
         socket.on("sendMessage", async (data) => {
             if (!data.sender || !data.receiver) {
-                console.log("Invalid message payload received:", msg);
                 return;
             }
             // console.log("message received", data);
             try {
+                const userQuestion = data.message;
+                if (data.receiver === "chatBot"){
+                    const botMsg = {
+                        sender: "chatBot",
+                        receiver: data.sender,
+                        message: await getBotReply(userQuestion),
+                    }
+                    // console.log(botMsg);
+                    io.to(data.sender).emit("receiveMessage", botMsg);
+                    return;
+                }
                 //save message to database
                 const newMessage = new Message({
                     sender : data.sender,
@@ -33,7 +43,7 @@ const initializeSocket = (server) => {
                 });
                 await newMessage.save() 
 
-                io.to(data.receiverId).emit("receiveMessage", newMessage);
+                io.to(data.receiver).emit("receiveMessage", newMessage);
             } catch (error) {
                 //debugging purpose
                 console.log("some error in socket.js file", error);

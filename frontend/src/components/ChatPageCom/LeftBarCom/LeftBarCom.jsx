@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { userContext } from "../../../contexts/UserContext"
 import style from "./LeftBarCom.module.css"
 
@@ -8,7 +9,6 @@ const LeftBarCom = () => {
     currentChatUser,
     setCurrentChatUser,
   } = userContext();
-
 
   return (
     <>

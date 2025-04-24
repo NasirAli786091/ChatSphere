@@ -1,5 +1,4 @@
 .top-section {
-    /* background-color: blue; */
     height: 60px;
     display: flex;
     justify-content: center;
@@ -7,7 +6,6 @@
     padding-left: 10px;
 }
 .friend-list {
-    /* background-color: rebeccapurple; */
     padding: 5px 5px;
     flex: 1;
     flex-wrap: nowrap;
@@ -21,10 +19,6 @@
     /* for firefox */
     scrollbar-width: none;
 }
-/* hide scrollbar for Chrome, Safari, and Opera */
-/* .friends-list::-webkit-scrollbar {
-    display: none;
-} */
 .friend-item {
     background-color: black;
     padding: 5px;
@@ -33,7 +27,6 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
-    flex-shrink: 0;
     overflow: hidden;
 }
 .friend-item:hover,

@@ -1,5 +1,5 @@
 .top-section {
-    background-color: red;
+    background-color: white;
     height: 60px;
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .mid-section {
-    flex: 1;
+    flex-grow: 1;
     padding: 10px 3px;
     overflow-y: auto;
     display: flex;
@@ -29,18 +29,39 @@
     background-repeat: no-repeat;
 }
 .blank-space{
+    background-color: #1976d2;
     flex: 1;
     padding: 10px 3px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    background-image: url("/Images/chatPg.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+}
+@keyframes fadeSlideLoop {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+.animated-text {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    animation: fadeSlideLoop 2.5s ease-in-out infinite;
 }
 .message {
     padding: 8px 12px;
@@ -56,6 +77,16 @@
     align-self: flex-start;
     background-color: #f1f1f1;
 }
+.bot {
+    align-self: flex-start;
+    background-color: #222;
+    color: #0f0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 4px 0;
+    max-width: 60%;
+    font-style: italic;
+  }
 .bottom-section{
     background-color: antiquewhite;
     height: 60px;

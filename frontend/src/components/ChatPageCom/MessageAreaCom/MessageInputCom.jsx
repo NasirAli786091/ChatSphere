@@ -6,7 +6,7 @@ import { userContext } from "../../../contexts/UserContext";
 const MessageInputCom = () => {
   const [text, setText] = useState("");
   const {
-    sendMessage
+    sendMessage,
   } = userContext();
   
   const handleSendMsg = () => {

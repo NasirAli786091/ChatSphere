@@ -3,36 +3,44 @@ import { socket, setupSocket } from "../socket/socket";
 import { getMessage } from "../api/messageApi";
 import showFriendList from "../api/showFriends";
 import useAuthStore from "../store/useAuthStore";
-
+import sendMessageToBot from "../api/chatBot.js";
 const UserContext = createContext();
 
 export const userContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
+    const [botMessages, setBotMessages] = useState([]);
     const [currentChatUser, setCurrentChatUser] = useState(null);
     const [friendList, setFriendList] = useState([]);
     const { userId } = useAuthStore();
-    
-    // useEffect(() => {
-        // fetchFriends();
-    // }, []);
-        const fetchFriends = async () => {
-          try {
+
+
+    const fetchFriends = async () => {
+        try {
+            const bot = {
+                _id: "chatBot",
+                username: "SphereBot",
+                isBot: true,
+            }
             const response = await showFriendList();
-            setFriendList(response.data.message);
-          } catch (error) {
+            setFriendList([bot, ...response.data.message]);
+        } catch (error) {
             console.log("Failed to fetch friends:", error);
-          }
-        };
-      
+        }
+    };
 
     // get all the messages from a friendId
     const fetchMsg = async (friendId) => {
         try {
-            const response = await getMessage(friendId);
-            // console.log("response for message", response);
-            setMessages(response.data.messages || []);
+            if (friendId === "chatBot") {
+                setMessages(botMessages);
+                // console.log(messages);
+            } else {
+                const response = await getMessage(friendId);
+                // console.log("response for message", response);
+                setMessages(response.data.messages || []);
+            }
         } catch (error) {
             console.log("error in fetching message", error);
         }
@@ -45,12 +53,12 @@ export const UserProvider = ({ children }) => {
             console.log("Missing data:", { currentChatUser, userId, text });
             return;
         }
+       
         const msg = {
             sender: userId,
             receiver: receiverId,
             message: text.trim(),
         };
-        console.log("sending message", msg);
         // Emit to server
         socket.emit("sendMessage", msg);
         // Update UI
@@ -58,25 +66,27 @@ export const UserProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        // console.log("user id in socket", userId);
-        if(userId){
+        if (!userId) return;
+
+        if (!socket.connected) {
             socket.connect();
             socket.on("connect", () => {
                 setupSocket();
             });
+        }
+
+        const handleReceiveMessage = (newMsg) => {
+            // Always push message (let frontend filter what to display)
+            setMessages((prev) => [...prev, newMsg]);
         };
-        socket.on("receiveMessage", (newMsg) => {
-            if (
-                newMsg.sender === currentChatUser?._id ||
-                newMsg.receiver === currentChatUser?._id
-            ) {
-                setMessages((prev) => [...prev, newMsg]);
-            }
-        });
+
+        socket.on("receiveMessage", handleReceiveMessage);
+
         return () => {
-            socket.off("receiveMessage")
+            socket.off("receiveMessage", handleReceiveMessage);
         };
-    }, [userId, currentChatUser]);
+    }, [userId]);
+
 
     return (
         <UserContext.Provider

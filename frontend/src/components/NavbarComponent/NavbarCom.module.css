@@ -6,6 +6,9 @@
     align-items: flex-end;
     justify-content: space-between;
 }
+.navbar-container .title-box{
+    color: #fff;
+}
 .navbar-container .title-box span{
     /* background-color: aqua; */
     color: red;

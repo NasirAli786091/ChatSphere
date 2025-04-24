@@ -32,7 +32,10 @@ const FriendReqsCom = () => {
                 console.log("error at friend req Com", error);
             }
         }
-        fetchFriendReq();
+        const interval = setInterval(() => {
+            fetchFriendReq();
+        }, 5000)
+        return () => clearInterval(interval);
     }, [acceptedIds])
     return (
         <>

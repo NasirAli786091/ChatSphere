@@ -1,8 +1,8 @@
-import style from "./NavbarCom.module.css"
-import { FaMessage } from "react-icons/fa6";
+// import { FaMessage } from "react-icons/fa6";
 // import { FaUserAlt } from "react-icons/fa";
-import { CiMenuFries } from "react-icons/ci";
 import { IoSettings, IoLogOut } from "react-icons/io5";
+import style from "./NavbarCom.module.css"
+import { CiMenuFries } from "react-icons/ci";
 import { useLoading } from "../../contexts/LoadingContext";
 import { logoutUser } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import SearchCom from "../SearchCom/SearchCom";
 import FriendReqsCom from "../FriendReqsCom/FriendReqsCom";
 import { useState } from "react";
 import useAuthStore from "../../store/useAuthStore";
+import ChatBotCom from "../ChatBot/ChatBotCom";
 
 const NavbarCom = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const NavbarCom = () => {
     const handleLogout = async () => {
         try {
             setIsLoading(true);
-            const res = await logoutUser();
+            await logoutUser();
             logout();
             setTimeout(() => {
                 setIsLoading(false);
@@ -56,15 +57,18 @@ const NavbarCom = () => {
                     {/* friend req */}
                     <FriendReqsCom />
 
+                    {/* Bot */}
+                    <ChatBotCom />
+
                     {/* chat */}
-                    <li>
+                    {/* <li>
                         <button className={style["link-btn"]}>
                             <span className={style["icon"]}>
                                 <FaMessage size={20} />
                             </span>
                             <span className={style["text"]}>Chat</span>
                         </button>
-                    </li>
+                    </li> */}
 
                     {/* profile */}
                     {/* <li>
@@ -77,14 +81,14 @@ const NavbarCom = () => {
                     </li> */}
 
                     {/* setting */}
-                    <li>
+                    {/* <li>
                         <button className={style["link-btn"]}>
                             <span className={style["icon"]}>
                                 <IoSettings size={24} />
                             </span>
                             <span className={style["text"]}>Setting</span>
                         </button>
-                    </li>
+                    </li> */}
 
                     {/* Logout */}
                     <li onClick={handleLogout}>
